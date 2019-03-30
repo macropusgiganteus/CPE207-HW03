@@ -48,7 +48,7 @@ class contact {
       <td align="center">
         <h3>${contactA.subject}</h3> 
         <h4>from ${contactA.name} (${contactA.gender})</h4>
-        <div>E-MAIL : ${contactA.email} PHONE : ${contactA.phone} </div>
+        <div>E-MAIL : ${contactA.email}  - PHONE : ${contactA.phone} </div>
         <div>MESSAGE : ${contactA.msg}</div>
         <div><input type="submit" href="#contact" class="btn btn-danger btn-sm delete" value="Delete contact">  </input></div>
       </td>
@@ -115,6 +115,7 @@ class contact {
   // 5. Event: Add a Contact
   document.querySelector('#submitcontact').addEventListener('click', (e) => {
     // 7. Prevent actual submit action
+
     e.preventDefault();
     //console.log("OK");
     
@@ -123,7 +124,13 @@ class contact {
      const phone =document.querySelector('#phone').value;
      const email =document.querySelector('#email').value;
      const subject = document.querySelector('#subject').value;
-     const gender =0;
+     let gendy;
+     if(document.querySelector('#toggle-on').checked){
+        gendy ='MALE';
+     }else{
+        gendy ='FEMALE';
+     }
+     const gender =gendy;
      const msg =document.querySelector('#message').value;
 
     // 12. Validate
@@ -133,7 +140,7 @@ class contact {
     } else {
       // 6. Instatiate contact
       const contactA = new contact(subject, name, phone, email,gender,msg);
-      // console.log(book);
+      // console.log(contact);
   
       // 8. Add Contact to UI
       UI.addContactToList(contactA);
@@ -154,8 +161,10 @@ class contact {
     UI.deleteContact(e.target);
   
     // Remove contact from list
-    Store.removeContact(e.target.parentElement.previousElementSibling.textContent);
+    //Store.removeContact(e.target.parentElement.previousElementSibling.textContent);
   
   });
 
   /////////////////////////////////////////////////////////////////////////////////////////////
+
+
